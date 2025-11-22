@@ -38,7 +38,7 @@ export const SUPPORTED_COINS: CoinOption[] = [
 // In a real app, these would come from a secure backend or wallet generation service
 export const WALLET_ADDRESSES: Record<CryptoSymbol, Record<string, string>> = {
   [CryptoSymbol.BTC]: {
-    [Network.BITCOIN]: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+    [Network.BITCOIN]: '12nbmgzH3RCvkvkRvYVScUibrn9b4Y1Mt6',
   },
   [CryptoSymbol.ETH]: {
     [Network.ETHEREUM]: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
