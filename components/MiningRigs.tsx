@@ -7,6 +7,8 @@ const PLANS: MiningPlan[] = [
   { id: 'advanced', name: 'Advanced Rig', price: 50, hashrate: '500 GH/s', dailyReturn: 7.50, hardware: '2x ASIC Lite' },
   { id: 'pro', name: 'Pro Miner', price: 100, hashrate: '1.0 TH/s', dailyReturn: 15.00, hardware: '4x ASIC Pro' },
   { id: 'enterprise', name: 'Mining Farm', price: 500, hashrate: '5.0 TH/s', dailyReturn: 75.00, hardware: 'Rack Server Unit' },
+  { id: 'industrial', name: 'Industrial Rig', price: 1000, hashrate: '10.0 TH/s', dailyReturn: 150.00, hardware: 'Datacenter Unit' },
+  { id: 'quantum', name: 'Quantum Farm', price: 2000, hashrate: '20.0 TH/s', dailyReturn: 300.00, hardware: 'Quantum Array' },
 ];
 
 type MiningState = 'selection' | 'payment' | 'verifying' | 'active' | 'review';
@@ -124,7 +126,13 @@ export const MiningRigs: React.FC = () => {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-400">Contract</span>
-                  <span className="text-white font-medium">365 Days</span>
+                  <span className="text-white font-medium">3 Months</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-400">Withdrawals</span>
+                  <span className="text-emerald-400 font-medium flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" /> Daily
+                  </span>
                 </div>
               </div>
 

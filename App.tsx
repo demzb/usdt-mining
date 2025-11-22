@@ -133,7 +133,7 @@ const App = () => {
                 <p className="text-slate-400 max-w-md text-sm">
                   {activeView === 'withdrawal' 
                     ? 'Access your mining profits instantly.' 
-                    : 'Click a plan below to start mining for 365 days.'}
+                    : 'Click a plan below to start mining for 3 months.'}
                 </p>
               </div>
               <div className="absolute right-0 top-0 w-64 h-64 bg-primary-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/4"></div>
