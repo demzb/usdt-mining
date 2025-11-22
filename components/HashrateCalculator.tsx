@@ -2,13 +2,14 @@ import React from 'react';
 import { Gauge, Zap, TrendingUp } from 'lucide-react';
 
 // Calculated rates based on specified tiers
+// Adjusted daily earnings starting at 3.00 USDT for 20 USDT deposit (15% daily return rate logic applied)
 const TIERS = [
-  { usdt: 20, rate: '200 GH/s', daily: '0.60' },
-  { usdt: 25, rate: '250 GH/s', daily: '0.75' },
-  { usdt: 30, rate: '300 GH/s', daily: '0.90' },
-  { usdt: 50, rate: '500 GH/s', daily: '1.50' },
-  { usdt: 500, rate: '5.0 TH/s', daily: '15.00' },
-  { usdt: 1000, rate: '10.0 TH/s', daily: '30.00' },
+  { usdt: 20, rate: '200 GH/s', daily: '3.00' },
+  { usdt: 25, rate: '250 GH/s', daily: '3.75' },
+  { usdt: 30, rate: '300 GH/s', daily: '4.50' },
+  { usdt: 50, rate: '500 GH/s', daily: '7.50' },
+  { usdt: 500, rate: '5.0 TH/s', daily: '75.00' },
+  { usdt: 1000, rate: '10.0 TH/s', daily: '150.00' },
 ];
 
 export const HashrateCalculator: React.FC = () => {
