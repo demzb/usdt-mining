@@ -3,6 +3,7 @@ import { SUPPORTED_COINS } from './constants';
 import { DepositCard } from './components/DepositCard';
 import { WithdrawalCard } from './components/WithdrawalCard';
 import { MiningActivityLocked } from './components/MiningActivityLocked';
+import { HashrateCalculator } from './components/HashrateCalculator';
 import { AIAssistant } from './components/AIAssistant';
 import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText, ArrowUpRight } from 'lucide-react';
 
@@ -100,11 +101,14 @@ const App = () => {
             {activeView === 'withdrawal' ? (
               <WithdrawalCard />
             ) : (
-              <DepositCard 
-                coins={SUPPORTED_COINS}
-                selectedCoin={activeCoin}
-                onSelectCoin={setActiveCoin}
-              />
+              <>
+                <DepositCard 
+                  coins={SUPPORTED_COINS}
+                  selectedCoin={activeCoin}
+                  onSelectCoin={setActiveCoin}
+                />
+                <HashrateCalculator />
+              </>
             )}
           </div>
 
