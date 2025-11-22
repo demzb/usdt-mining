@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SUPPORTED_COINS } from './constants';
 import { DepositCard } from './components/DepositCard';
 import { WithdrawalCard } from './components/WithdrawalCard';
@@ -6,14 +6,39 @@ import { MiningActivityLocked } from './components/MiningActivityLocked';
 import { HashrateCalculator } from './components/HashrateCalculator';
 import { ReferralCard } from './components/ReferralCard';
 import { AIAssistant } from './components/AIAssistant';
-import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText, ArrowUpRight } from 'lucide-react';
+import { AuthScreen } from './components/AuthScreen';
+import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText, ArrowUpRight, LogOut, User } from 'lucide-react';
 
 type View = 'dashboard' | 'deposit' | 'withdrawal';
 
 const App = () => {
+  const [user, setUser] = useState<string | null>(null);
   const [activeCoin, setActiveCoin] = useState(SUPPORTED_COINS[0]);
   const [activeView, setActiveView] = useState<View>('deposit');
   const [isAIOpen, setIsAIOpen] = useState(false);
+
+  // Check for existing session
+  useEffect(() => {
+    const storedUser = localStorage.getItem('mining_app_current_user');
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
+
+  const handleLogin = (username: string) => {
+    localStorage.setItem('mining_app_current_user', username);
+    setUser(username);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('mining_app_current_user');
+    setUser(null);
+    setActiveView('deposit'); // Reset view
+  };
+
+  if (!user) {
+    return <AuthScreen onLogin={handleLogin} />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-primary-500/30">
@@ -68,9 +93,25 @@ const App = () => {
               
               <div className="h-6 w-px bg-slate-800 mx-1 hidden sm:block"></div>
               
-              {/* Mock User Profile */}
+              {/* User Profile & Logout */}
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border border-slate-600"></div>
+                <div className="hidden sm:flex flex-col items-end mr-1">
+                  <span className="text-xs font-semibold text-white">{user}</span>
+                  <span className="text-[10px] text-emerald-400 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Active
+                  </span>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border border-slate-600 flex items-center justify-center">
+                  <User className="w-4 h-4 text-slate-300" />
+                </div>
+                <button 
+                  onClick={handleLogout}
+                  className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors ml-1"
+                  title="Sign Out"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
