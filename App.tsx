@@ -119,7 +119,7 @@ const App = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-28 md:pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Left Column: Dynamic Content (8 cols) */}
@@ -185,6 +185,31 @@ const App = () => {
           </div>
         </div>
       </main>
+
+      {/* Mobile Bottom Navigation */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 px-2 py-2 flex justify-around items-center z-30 pb-6">
+        <button 
+            onClick={() => setActiveView('dashboard')}
+            className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${activeView === 'dashboard' ? 'text-primary-400 bg-primary-500/10' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+            <LayoutDashboard className="w-5 h-5" />
+            <span className="text-[10px] font-medium">Dashboard</span>
+        </button>
+        <button 
+            onClick={() => setActiveView('deposit')}
+            className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${activeView === 'deposit' ? 'text-primary-400 bg-primary-500/10' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+            <ArrowLeftRight className="w-5 h-5" />
+            <span className="text-[10px] font-medium">Deposit</span>
+        </button>
+        <button 
+            onClick={() => setActiveView('withdrawal')}
+            className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${activeView === 'withdrawal' ? 'text-primary-400 bg-primary-500/10' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+            <ArrowUpRight className="w-5 h-5" />
+            <span className="text-[10px] font-medium">Withdraw</span>
+        </button>
+      </div>
 
       {/* AI Assistant Modal/Chat */}
       <AIAssistant isOpen={isAIOpen} onClose={() => setIsAIOpen(false)} />
