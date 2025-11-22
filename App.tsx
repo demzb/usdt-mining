@@ -1,13 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SUPPORTED_COINS, INITIAL_TRANSACTIONS } from './constants';
 import { DepositCard } from './components/DepositCard';
 import { TransactionHistory } from './components/TransactionHistory';
 import { AIAssistant } from './components/AIAssistant';
-import { Wallet, Bell, LayoutDashboard, ArrowLeftRight, MessageSquareText, Menu } from 'lucide-react';
+import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText } from 'lucide-react';
+import { supabase } from './lib/supabaseClient';
+import { Transaction } from './types';
 
 const App = () => {
   const [activeCoin, setActiveCoin] = useState(SUPPORTED_COINS[0]);
   const [isAIOpen, setIsAIOpen] = useState(false);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('transactions')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (data) {
+          const formattedTransactions: Transaction[] = data.map((tx: any) => ({
+            id: tx.id,
+            type: tx.type,
+            amount: tx.amount,
+            symbol: tx.symbol,
+            status: tx.status,
+            date: new Date(tx.created_at).toLocaleString(),
+            hash: tx.hash
+          }));
+          setTransactions(formattedTransactions);
+        }
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+        // Fallback to initial mock data if connection fails or table doesn't exist yet
+        setTransactions(INITIAL_TRANSACTIONS);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTransactions();
+
+    // Set up realtime subscription
+    const subscription = supabase
+      .channel('transactions')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'transactions' }, () => {
+        fetchTransactions();
+      })
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-primary-500/30">
@@ -104,7 +154,7 @@ const App = () => {
                 </div>
             </div>
 
-            <TransactionHistory transactions={INITIAL_TRANSACTIONS} />
+            <TransactionHistory transactions={transactions} />
             
             <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
                 <h3 className="font-semibold text-slate-200 mb-4">Need Help?</h3>
