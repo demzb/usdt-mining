@@ -163,6 +163,8 @@ export const MiningRigs: React.FC = () => {
                 Thank you for your payment. We have received your transaction receipt for the <span className="text-white font-medium">{selectedPlan?.name}</span>.
                 <br /><br />
                 Our blockchain nodes are currently verifying the transaction. Your mining rig will automatically start producing hashrate once the deposit is confirmed.
+                <br /><br />
+                <span className="text-slate-500 text-xs">Questions? Email <a href="mailto:supportcryptomining@gmail.com" className="text-primary-400 hover:underline">supportcryptomining@gmail.com</a></span>
             </p>
             
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 mb-8 max-w-sm mx-auto">

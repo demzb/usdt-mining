@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, Send, X, Sparkles, Bot } from 'lucide-react';
+import { MessageSquare, Send, X, Sparkles, Bot, Mail } from 'lucide-react';
 import { generateSupportResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
 
@@ -10,7 +10,7 @@ interface AIAssistantProps {
 
 export const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: "Hello! I'm Crypto Mining AI. How can I help you with your deposit today?", timestamp: Date.now() }
+    { role: 'model', text: "Hello! I'm Crypto Mining AI. How can I help you? For direct human support or billing issues, please email supportcryptomining@gmail.com", timestamp: Date.now() }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +59,9 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ isOpen, onClose }) => 
           </div>
           <div>
             <h3 className="font-semibold text-slate-100 text-sm">AI Support</h3>
-            <p className="text-xs text-slate-400">Powered by Gemini 2.5</p>
+            <a href="mailto:supportcryptomining@gmail.com" className="text-[10px] text-slate-400 hover:text-primary-400 flex items-center gap-1 transition-colors mt-0.5">
+               <Mail className="w-3 h-3" /> supportcryptomining@gmail.com
+            </a>
           </div>
         </div>
         <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">

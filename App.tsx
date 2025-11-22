@@ -7,6 +7,7 @@ import { MiningRigs } from './components/MiningRigs';
 import { ReferralCard } from './components/ReferralCard';
 import { AIAssistant } from './components/AIAssistant';
 import { AuthScreen } from './components/AuthScreen';
+import { SupportCenter } from './components/SupportCenter';
 import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText, ArrowUpRight, LogOut, User } from 'lucide-react';
 
 type View = 'dashboard' | 'deposit' | 'withdrawal';
@@ -154,6 +155,7 @@ const App = () => {
                     />
                 </div>
                 <ReferralCard />
+                <SupportCenter onOpenChat={() => setIsAIOpen(true)} />
               </>
             )}
           </div>

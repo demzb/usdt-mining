@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Lock, ArrowRight, Wallet, Loader2, Sparkles, CheckCircle, ArrowLeft } from 'lucide-react';
+import { User, Lock, ArrowRight, Wallet, Loader2, Sparkles, CheckCircle, ArrowLeft, Mail } from 'lucide-react';
 
 interface AuthScreenProps {
   onLogin: (username: string) => void;
@@ -239,6 +239,12 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
                 </p>
             </div>
           )}
+
+          <div className="mt-4 text-center">
+            <a href="mailto:supportcryptomining@gmail.com" className="text-xs text-slate-500 hover:text-slate-400 transition-colors flex items-center justify-center gap-1">
+                <Mail className="w-3 h-3" /> Need help? Contact support
+            </a>
+          </div>
         </div>
         
         {/* Feature highlights */}
