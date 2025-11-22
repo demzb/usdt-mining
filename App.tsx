@@ -3,7 +3,7 @@ import { SUPPORTED_COINS } from './constants';
 import { DepositCard } from './components/DepositCard';
 import { WithdrawalCard } from './components/WithdrawalCard';
 import { MiningActivityLocked } from './components/MiningActivityLocked';
-import { HashrateCalculator } from './components/HashrateCalculator';
+import { MiningRigs } from './components/MiningRigs';
 import { ReferralCard } from './components/ReferralCard';
 import { AIAssistant } from './components/AIAssistant';
 import { AuthScreen } from './components/AuthScreen';
@@ -133,7 +133,7 @@ const App = () => {
                 <p className="text-slate-400 max-w-md text-sm">
                   {activeView === 'withdrawal' 
                     ? 'Access your mining profits instantly.' 
-                    : 'Click USDT deposit and start mining for 365 days.'}
+                    : 'Click a plan below to start mining for 365 days.'}
                 </p>
               </div>
               <div className="absolute right-0 top-0 w-64 h-64 bg-primary-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/4"></div>
@@ -144,12 +144,15 @@ const App = () => {
               <WithdrawalCard />
             ) : (
               <>
-                <DepositCard 
-                  coins={SUPPORTED_COINS}
-                  selectedCoin={activeCoin}
-                  onSelectCoin={setActiveCoin}
-                />
-                <HashrateCalculator />
+                {/* We still keep generic deposit card for manual deposits, but MiningRigs handles rig-specific deposits */}
+                <MiningRigs />
+                <div className="opacity-75 scale-95 origin-top">
+                    <DepositCard 
+                    coins={SUPPORTED_COINS}
+                    selectedCoin={activeCoin}
+                    onSelectCoin={setActiveCoin}
+                    />
+                </div>
                 <ReferralCard />
               </>
             )}

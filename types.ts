@@ -43,3 +43,12 @@ export interface ChatMessage {
   text: string;
   timestamp: number;
 }
+
+export interface MiningPlan {
+  id: string;
+  name: string;
+  price: number;
+  hashrate: string;
+  dailyReturn: number;
+  hardware: string;
+}
