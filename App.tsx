@@ -4,6 +4,7 @@ import { DepositCard } from './components/DepositCard';
 import { WithdrawalCard } from './components/WithdrawalCard';
 import { MiningActivityLocked } from './components/MiningActivityLocked';
 import { HashrateCalculator } from './components/HashrateCalculator';
+import { ReferralCard } from './components/ReferralCard';
 import { AIAssistant } from './components/AIAssistant';
 import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText, ArrowUpRight } from 'lucide-react';
 
@@ -108,6 +109,7 @@ const App = () => {
                   onSelectCoin={setActiveCoin}
                 />
                 <HashrateCalculator />
+                <ReferralCard />
               </>
             )}
           </div>
