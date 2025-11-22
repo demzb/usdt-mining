@@ -1,11 +1,7 @@
 import React from 'react';
-import { LifeBuoy, Mail, MessageSquareText, ArrowRight } from 'lucide-react';
+import { LifeBuoy, Mail, ArrowRight } from 'lucide-react';
 
-interface SupportCenterProps {
-  onOpenChat: () => void;
-}
-
-export const SupportCenter: React.FC<SupportCenterProps> = ({ onOpenChat }) => {
+export const SupportCenter: React.FC = () => {
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-in fade-in slide-in-from-bottom-8 duration-700">
       <div className="flex items-center gap-3 mb-6">
@@ -18,27 +14,28 @@ export const SupportCenter: React.FC<SupportCenterProps> = ({ onOpenChat }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors group">
-          <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-            <Mail className="w-5 h-5 text-primary-400" />
+      <div className="bg-slate-950/50 p-6 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors group">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start sm:items-center gap-4">
+             <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-slate-800">
+                <Mail className="w-6 h-6 text-primary-400" />
+            </div>
+            <div>
+                <h3 className="font-semibold text-slate-200 text-lg mb-1">Email Support</h3>
+                <p className="text-sm text-slate-400">
+                    For billing issues, activation delays, or general inquiries, please contact our support team.
+                </p>
+            </div>
           </div>
-          <h3 className="font-semibold text-slate-200 mb-1">Email Support</h3>
-          <p className="text-xs text-slate-500 mb-3">Get help with your account or payments.</p>
-          <a href="mailto:supportcryptomining@gmail.com" className="text-sm font-medium text-primary-400 hover:text-primary-300 flex items-center gap-1 transition-colors">
-            supportcryptomining@gmail.com <ArrowRight className="w-3 h-3" />
+          
+          <a href="mailto:supportcryptomining@gmail.com" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-medium transition-all shadow-lg shadow-primary-500/20 whitespace-nowrap">
+            Contact Us <ArrowRight className="w-4 h-4" />
           </a>
         </div>
-
-        <div className="bg-slate-950/50 p-4 rounded-xl border border-slate-800 hover:border-slate-700 transition-colors group">
-          <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-            <MessageSquareText className="w-5 h-5 text-emerald-400" />
-          </div>
-          <h3 className="font-semibold text-slate-200 mb-1">Live AI Chat</h3>
-          <p className="text-xs text-slate-500 mb-3">Instant answers to common questions.</p>
-          <button onClick={onOpenChat} className="text-sm font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors">
-            Start Conversation <ArrowRight className="w-3 h-3" />
-          </button>
+        <div className="mt-4 pt-4 border-t border-slate-800/50 text-center sm:text-left">
+             <p className="text-xs text-slate-500 font-mono">
+                Official: <span className="text-slate-400 select-all">supportcryptomining@gmail.com</span>
+             </p>
         </div>
       </div>
     </div>

@@ -5,10 +5,9 @@ import { WithdrawalCard } from './components/WithdrawalCard';
 import { MiningActivityLocked } from './components/MiningActivityLocked';
 import { MiningRigs } from './components/MiningRigs';
 import { ReferralCard } from './components/ReferralCard';
-import { AIAssistant } from './components/AIAssistant';
 import { AuthScreen } from './components/AuthScreen';
 import { SupportCenter } from './components/SupportCenter';
-import { Wallet, LayoutDashboard, ArrowLeftRight, MessageSquareText, ArrowUpRight, LogOut, User } from 'lucide-react';
+import { Wallet, LayoutDashboard, ArrowLeftRight, ArrowUpRight, LogOut, User } from 'lucide-react';
 
 type View = 'dashboard' | 'deposit' | 'withdrawal';
 
@@ -16,7 +15,6 @@ const App = () => {
   const [user, setUser] = useState<string | null>(null);
   const [activeCoin, setActiveCoin] = useState(SUPPORTED_COINS[0]);
   const [activeView, setActiveView] = useState<View>('deposit');
-  const [isAIOpen, setIsAIOpen] = useState(false);
 
   // Check for existing session
   useEffect(() => {
@@ -83,14 +81,6 @@ const App = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-4">
-              <button 
-                onClick={() => setIsAIOpen(!isAIOpen)}
-                className="p-2 text-slate-400 hover:text-white hover:bg-slate-900 rounded-lg transition-colors relative"
-                title="AI Assistant"
-              >
-                <MessageSquareText className="w-5 h-5" />
-                {!isAIOpen && <span className="absolute top-2 right-2 w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>}
-              </button>
               
               <div className="h-6 w-px bg-slate-800 mx-1 hidden sm:block"></div>
               
@@ -155,7 +145,7 @@ const App = () => {
                     />
                 </div>
                 <ReferralCard />
-                <SupportCenter onOpenChat={() => setIsAIOpen(true)} />
+                <SupportCenter />
               </>
             )}
           </div>
@@ -212,9 +202,6 @@ const App = () => {
             <span className="text-[10px] font-medium">Withdraw</span>
         </button>
       </div>
-
-      {/* AI Assistant Modal/Chat */}
-      <AIAssistant isOpen={isAIOpen} onClose={() => setIsAIOpen(false)} />
 
     </div>
   );
