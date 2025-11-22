@@ -35,8 +35,17 @@ const App = () => {
           }));
           setTransactions(formattedTransactions);
         }
-      } catch (error) {
-        console.error('Error fetching transactions:', error);
+      } catch (error: any) {
+        // Check for specific Supabase table missing errors
+        const isTableMissing = error.message?.includes('Could not find the table') || 
+                               error.message?.includes('relation "public.transactions" does not exist');
+
+        if (isTableMissing) {
+          console.warn('Supabase Update Required: The "transactions" table was not found. Falling back to mock data. Please run the provided "supabase_schema.sql" in your Supabase SQL Editor.');
+        } else {
+          console.error('Error fetching transactions:', error.message || error);
+        }
+        
         // Fallback to initial mock data if connection fails or table doesn't exist yet
         setTransactions(INITIAL_TRANSACTIONS);
       } finally {
