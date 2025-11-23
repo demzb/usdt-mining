@@ -1,16 +1,11 @@
 export enum CryptoSymbol {
   BTC = 'BTC',
-  ETH = 'ETH',
-  USDT = 'USDT',
-  SOL = 'SOL',
-  USDC = 'USDC'
+  USDT = 'USDT'
 }
 
 export enum Network {
   BITCOIN = 'Bitcoin',
-  ETHEREUM = 'Ethereum (ERC20)',
   TRON = 'Tron (TRC20)',
-  SOLANA = 'Solana',
   BSC = 'BNB Smart Chain (BEP20)'
 }
 
